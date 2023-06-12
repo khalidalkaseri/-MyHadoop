@@ -1,0 +1,18 @@
+FROM confluentinc/cp-server-connect-base:latest
+
+ENV PLUGIN_PATH=/usr/share/confluent-hub-components
+
+RUN confluent-hub install confluentinc/connect-transforms:latest           --no-prompt && \
+    confluent-hub install confluentinc/kafka-connect-aws-dynamodb:latest   --no-prompt && \
+    confluent-hub install confluentinc/kafka-connect-aws-lambda:latest     --no-prompt && \
+    confluent-hub install confluentinc/kafka-connect-datagen:latest        --no-prompt && \
+    confluent-hub install confluentinc/kafka-connect-elasticsearch:latest  --no-prompt && \
+    confluent-hub install confluentinc/kafka-connect-http:latest           --no-prompt && \
+    confluent-hub install confluentinc/kafka-connect-jdbc:latest           --no-prompt && \
+    confluent-hub install confluentinc/kafka-connect-s3:latest             --no-prompt && \
+    confluent-hub install confluentinc/kafka-connect-s3-source:latest      --no-prompt && \
+    confluent-hub install confluentinc/kafka-connect-salesforce:latest     --no-prompt && \
+    confluent-hub install confluentinc/kafka-connect-sqs:latest            --no-prompt && \
+    confluent-hub install jcustenborder/kafka-connect-json-schema:0.2.5    --no-prompt ;
+	
+CMD /etc/confluent/docker/run
